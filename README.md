@@ -25,8 +25,6 @@ You can specify custom ports using the flags:
    ```bash
    ./udp_forwarder -l 5156 -r 514 -w 8080 10.120.223.123
 
-
-
 ## Compilation
 
 To compile the program, use the provided `Makefile`. Make sure you have `gcc` installed.
