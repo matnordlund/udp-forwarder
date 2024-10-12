@@ -22,9 +22,8 @@ You can specify custom ports using the flags:
 - -r <remote_port> for the remote forward port.</li>
 - -w <http_port> for the HTTP stats server.</li>
 
-
-<p>Example:</p>
-<pre><code>./udp_forwarder -l 5156 -r 514 -w 8080 10.120.223.36</code></pre>
+   ```bash
+   ./udp_forwarder -l 5156 -r 514 -w 8080 10.120.223.123
 
 
 
