@@ -18,12 +18,23 @@ connected clients.
 
 ## Running with Custom Ports
 You can specify custom ports using the flags:
-- -l <listen_port> for the UDP listen port.</li>
-- -r <remote_port> for the remote forward port.</li>
-- -w <http_port> for the HTTP stats server.</li>
+- -l <listen_port> for the UDP listen port.
+- -r <remote_port> for the remote forward port.
+- -w <http_port> for the HTTP stats server.
 
    ```bash
    ./udp_forwarder -l 5156 -r 514 -w 8080 10.120.223.123
+
+## Running with config.ini
+
+Example `config.ini` file that listens on UDP port 8514 and forward logs to UDP port 512 in 192.168.0.100.
+
+```bash
+listen_port=8514
+remote_port=514
+http_port=8080
+forward_ip=192.168.0.100
+```
 
 ## Compilation
 
