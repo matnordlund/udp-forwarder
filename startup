@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Startyp Charon and initiate IPsec tunnel
 /usr/libexec/ipsec/charon &
 echo "Sleeping for 5 seconds to allow charon to load"
