@@ -6,7 +6,7 @@ SRC = udp_forwarder.c
 all: $(OUTPUT)
 
 $(OUTPUT): $(SRC)
-        $(CC) $(CFLAGS) -o $(OUTPUT) $(SRC)
+	$(CC) $(CFLAGS) -o $(OUTPUT) $(SRC)
 
 clean:
-        rm -f $(OUTPUT)
+	rm -f $(OUTPUT)
