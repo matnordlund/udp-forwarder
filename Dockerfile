@@ -7,14 +7,15 @@ RUN apt-get install -y gcc make wget
 
 WORKDIR /app
 
-# Download source files to the working directory
-RUN wget https://raw.githubusercontent.com/matnordlund/udp-forwarder/refs/heads/main/udp_forwarder.c
-
 # Build the UDP forwarder program
-RUN gcc -Wall -pthread -o udp_forwarder udp_forwarder.c
+COPY Makefile Makefile
+COPY udp_forwarder.c udp_forwarder.c
+
+#RUN gcc -Wall -pthread -o udp_forwarder udp_forwarder.c
+RUN make
 
 # Download startup file to the working directory
-RUN wget https://raw.githubusercontent.com/matnordlund/udp-forwarder/refs/heads/main/startup
+COPY startup startup
 RUN chmod 755 startup
 
 # Clean up development tools
