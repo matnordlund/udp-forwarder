@@ -335,6 +335,8 @@ void* tcp_server(void* arg) {
 }
 
 // Daemonize the process
+#ifdef _WIN32
+#else
 void daemonize() {
     pid_t pid;
 
@@ -368,6 +370,7 @@ void daemonize() {
     chdir("/");
     umask(0);
 }
+#endif
 
 int main(int argc, char* argv[]) {
 #ifdef _WIN32
@@ -422,10 +425,14 @@ int main(int argc, char* argv[]) {
         exit(EXIT_FAILURE);
     }
 
+    // Daemon mode only available on Unix liks OS
+    #ifdef _WIN32
+    #else
     if (daemon_mode) {
         daemonize();
     }
-
+    #endif
+    
     struct sockaddr_in listen_addr, forward_addr, client_addr;
     socklen_t client_addr_len = sizeof(client_addr);
     char buffer[BUFFER_SIZE];
