@@ -16,6 +16,10 @@ RUN make
 COPY startup startup
 RUN chmod 755 startup
 
+COPY healthcheck-script.sh healthcheck-script.sh
+RUN chmod 755 healthcheck-script.sh
+HEALTHCHECK CMD healthcheck-script.sh 
+
 # Clean up development tools
 RUN apt-get -y remove gcc make
 RUN apt-get -y autoremove
