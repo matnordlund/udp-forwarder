@@ -1,12 +1,17 @@
+#ifdef _WIN32
+    #include <winsock2.h>
+    #include <ws2tcpip.h>
+#else
+    #include <arpa/inet.h>
+    #include <netinet/in.h>
+    #include <sys/socket.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <arpa/inet.h>
 #include <time.h>
 #include <signal.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
 #include <fcntl.h>
 #include <pthread.h>
 #include <sys/types.h>
@@ -365,6 +370,14 @@ void daemonize() {
 }
 
 int main(int argc, char* argv[]) {
+#ifdef _WIN32
+    WSADATA wsaData;
+    if (WSAStartup(MAKEWORD(2, 2), &wsaData) != 0) {
+        fprintf(stderr, "WSAStartup failed.\n");
+        return 1;
+    }
+#endif
+
     int listen_port = 514;
     int remote_port = 514;
     int http_port = 8514;
@@ -478,5 +491,8 @@ int main(int argc, char* argv[]) {
     }
 
     close(listen_socket);
+#ifdef _WIN32
+    WSACleanup();
+#endif
     return 0;
 }
