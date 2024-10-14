@@ -14,8 +14,8 @@ COPY udp_forwarder.c udp_forwarder.c
 RUN make
 
 # Download startup file to the working directory
-COPY startup startup
-RUN chmod 755 startup
+COPY startup.sh startup.sh
+RUN chmod 755 startup.sh
 
 COPY healthcheck-script.sh healthcheck-script.sh
 RUN chmod 755 healthcheck-script.sh
@@ -32,4 +32,4 @@ RUN mkdir -p /data
 EXPOSE 514/udp
 EXPOSE 8514/tcp
 
-CMD ["sh", "-c", "/app/startup"]
+CMD ["sh", "-c", "/app/startup.sh"]
