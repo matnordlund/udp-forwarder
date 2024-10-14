@@ -3,6 +3,7 @@ FROM strongx509/strongswan:latest
 
 # Install development tools
 RUN apt-get update -y
+RUN apt-get upgrade -y
 RUN apt-get install -y gcc make
 
 WORKDIR /app
