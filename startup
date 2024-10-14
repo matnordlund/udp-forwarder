@@ -5,7 +5,7 @@
 echo "Sleeping for 5 seconds to allow charon to load"
 sleep 5
 /usr/sbin/swanctl --load-all
-/usr/sbin/swanctl --initiate -c net
+/usr/sbin/swanctl --initiate -c sase_logging_net
 
 # Create ipsec0 interface and setup routes
 /usr/libexec/ipsec/xfrmi --name ipsec0 --id 42 --dev eth0
