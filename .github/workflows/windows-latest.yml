@@ -16,3 +16,9 @@ jobs:
 
     - name: Install dependencies
       run: make
+      
+    - name: Upload binary artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: udp-forwarder-windows-latest.exe
+        path: udp-forwarder.exe
