@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: macOS Latest CI Workflow
 
 on:
   push:
@@ -15,3 +15,9 @@ jobs:
     - uses: actions/checkout@v4
     - name: make
       run: make
+    - name: Upload binary artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: udp-forwarder-macos-latest
+        path: /home/runner/work/udp-forwarder/udp-forwarder
+    
