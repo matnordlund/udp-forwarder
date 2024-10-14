@@ -11,7 +11,12 @@ if [[ -n "$CHILD_SA_STATUS" ]]; then
 else
     echo "$(date): ERROR: Child SAs for connection '${CONNECTION_NAME}' are DOWN" >&1  # Log to stdout for Docker logs
     echo "$(date): Trying to restart the connection '${IKE_NAME}'" >&1
-    swanctl --terminate --ike ${IKE_NAME}
-    swanctl --initiate --ike ${IKE_NAME}
+    #swanctl --terminate --ike ${IKE_NAME}
+    #swanctl --initiate --ike ${IKE_NAME}
+    /usr/bin/pkill charon
+    /usr/libexec/ipsec/charon &
+    sleep 5
+    /usr/sbin/swanctl --load-all
+    /usr/sbin/swanctl --initiate -c ${CONNECTION_NAME}
     exit 1       
 fi
