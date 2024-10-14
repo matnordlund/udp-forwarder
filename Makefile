@@ -4,12 +4,12 @@
 # Detect if we are on Windows
 ifeq ($(OS),Windows_NT)
     CC = gcc
-    CFLAGS = -DWINDOWS -O2 -Wall
+    CFLAGS = -DWINDOWS -Wall
     LDFLAGS = -lws2_32 
     EXECUTABLE = udp-forwarder.exe
 else
     CC = gcc
-    CFLAGS = -O2 -Wall -pthread
+    CFLAGS = -Wall -pthread
     LDFLAGS =
     EXECUTABLE = udp-forwarder
 endif
