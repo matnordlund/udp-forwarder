@@ -1,4 +1,4 @@
-name: Windows CI Workflow
+name: Windows Latest CI Workflow
 
 on:
   push:
