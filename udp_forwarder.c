@@ -19,7 +19,7 @@
 #include <getopt.h>
 
 #ifndef VERSION
-#define VERSION "build-" __DATE__
+#define VERSION "current-" __DATE__
 #endif
 
 #define MAX_CLIENTS 100
