@@ -23,4 +23,4 @@ local_ts=${local_ts%/32}
 ip route add $remote_ts src $local_ts dev ipsec0
 
 # Startup upd_forwarder
-/app/udp-forwarder -c /data/config.ini
+/app/udp-forwarder -s -c /data/config.ini
