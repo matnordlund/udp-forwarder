@@ -34,6 +34,7 @@ int num_clients = 0;
 int listen_socket;
 int tcp_socket;
 int daemon_mode = 0;  // Daemon mode flag
+int silent_mode = 0;  // Silent mode flag
 
 // Structure to hold server arguments (IP and ports)
 typedef struct {
@@ -143,6 +144,8 @@ int calculate_average_logs_per_second(ClientStats* client) {
 
 // Print statistics for all connected clients
 void print_stats() {
+    if (silent_mode) return;
+
     printf("--- Stats ---\n");
 
     int total_logs_per_second = 0;
@@ -406,8 +409,11 @@ int main(int argc, char* argv[]) {
             case 'd':
                 daemon_mode = 1;
                 break;
+            case 's':
+                silent_mode = 1;
+                break;
             default:
-                fprintf(stderr, "Usage: %s [-l listen_port] [-r remote_port] [-w http_port] [-c config_file] [-d] <forward_ip>\n", argv[0]);
+                fprintf(stderr, "Usage: %s [-l listen_port] [-r remote_port] [-w http_port] [-c config_file] [-s] [-d] <forward_ip>\n", argv[0]);
                 exit(EXIT_FAILURE);
         }
     }
