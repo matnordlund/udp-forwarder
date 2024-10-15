@@ -18,6 +18,10 @@
 #include <sys/stat.h>
 #include <getopt.h>
 
+#ifndef VERSION
+#define VERSION "build-" __DATE__
+#endif
+
 #define MAX_CLIENTS 100
 #define BUFFER_SIZE 4096
 #define CONFIG_FILE_DEFAULT "config.ini"
@@ -391,7 +395,7 @@ int main(int argc, char* argv[]) {
     int opt;
     char config_file[256] = CONFIG_FILE_DEFAULT;  // Default config file
 
-    while ((opt = getopt(argc, argv, "l:r:w:c:ds")) != -1) {
+    while ((opt = getopt(argc, argv, "l:r:w:c:dsv")) != -1) {
         switch (opt) {
             case 'l':
                 listen_port = atoi(optarg);
@@ -412,6 +416,9 @@ int main(int argc, char* argv[]) {
             case 's':
                 silent_mode = 1;
                 break;
+            case 'v':
+                printf("UDP Forwarder Version: %s\n", VERSION);
+                exit(0);      
             default:
                 fprintf(stderr, "Usage: %s [-l listen_port] [-r remote_port] [-w http_port] [-c config_file] [-s] [-d] <forward_ip>\n", argv[0]);
                 exit(EXIT_FAILURE);
