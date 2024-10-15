@@ -391,7 +391,7 @@ int main(int argc, char* argv[]) {
     int opt;
     char config_file[256] = CONFIG_FILE_DEFAULT;  // Default config file
 
-    while ((opt = getopt(argc, argv, "l:r:w:c:s:d")) != -1) {
+    while ((opt = getopt(argc, argv, "l:r:w:c:ds")) != -1) {
         switch (opt) {
             case 'l':
                 listen_port = atoi(optarg);
